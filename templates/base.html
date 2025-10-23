@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block titulo %}Mi App Flask {% endblock %}</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+        {% block head %} {% endblock %}
+    </head>
+
+    <body>
+        <div class="container">
+            {% block contenido %} 
+            {% endblock %}
+        </div>
+    </body>
+</html>

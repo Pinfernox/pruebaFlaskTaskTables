@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block contenido %}
+<h1>{{ titulo }}</h1>
+<p>{{ mensaje }}</p>
+
+<table>
+    <tr><th>Tarea</th><th>Fecha</th><th>Acciones</th></tr>
+    {% for task in tasks %}
+    <tr>
+        <td>{{ task.content }}</td>
+        <td>
+        {% if task.date_added %}
+            {{ task.date_added.strftime('%Y-%m-%d') }}
+        {% else %}
+            Sin fecha
+        {% endif %}
+        </td>
+        <td>
+            <a href="{{ url_for('update', id=task._id) }}">Actualizar</a>
+            <a href="{{ url_for('delete', id=task._id) }}" onclick="return confirm('¿Seguro que quieres borrar esta tarea?')">Borrar</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+<form method="POST">
+    <input type="text" name="content" placeholder="Nueva tarea" required>
+    <button type="submit">Añadir tarea</button>
+</form>
+
+{% endblock %}
